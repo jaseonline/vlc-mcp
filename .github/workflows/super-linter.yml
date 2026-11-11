@@ -1,0 +1,60 @@
+name: Lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+      statuses: write # report each linter as a status check
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # super-linter needs full history to work out which files changed
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Super-linter
+        uses: super-linter/super-linter/slim@2da136927bd4a73596db63044b504547c62cb854 # v9.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_ALL_CODEBASE: false
+          # Repo-specific linter configs go in .github/linters/
+          LINTER_RULES_PATH: .github/linters
+          # stacks/ holds merge-in fragments that are deleted after setup
+          FILTER_REGEX_EXCLUDE: '.*stacks/.*'
+          # One tool per job: ruff for Python, Biome for JS/TS/JSON (matching the stack hooks), so drop the overlaps
+          VALIDATE_PYTHON_BLACK: false
+          VALIDATE_PYTHON_FLAKE8: false
+          VALIDATE_PYTHON_ISORT: false
+          VALIDATE_PYTHON_PYLINT: false
+          VALIDATE_JAVASCRIPT_ES: false
+          VALIDATE_JAVASCRIPT_PRETTIER: false
+          VALIDATE_TYPESCRIPT_ES: false
+          VALIDATE_TYPESCRIPT_PRETTIER: false
+          VALIDATE_JSX: false
+          VALIDATE_TSX: false
+          VALIDATE_JSON: false
+          VALIDATE_JSON_PRETTIER: false
+          VALIDATE_JSONC_PRETTIER: false
+          VALIDATE_CSS_PRETTIER: false
+          VALIDATE_HTML_PRETTIER: false
+          VALIDATE_MARKDOWN_PRETTIER: false
+          VALIDATE_YAML_PRETTIER: false
+          VALIDATE_JSCPD: false
+          # textlint's terminology rule rejects house style ("repo", "README"); prose isn't linted
+          VALIDATE_NATURAL_LANGUAGE: false
+          # Commit subjects follow CLAUDE.md, not Conventional Commits
+          VALIDATE_GIT_COMMITLINT: false
+          # PR summary comments need pull-requests: write, which this job doesn't grant
+          ENABLE_GITHUB_PULL_REQUEST_SUMMARY_COMMENT: false

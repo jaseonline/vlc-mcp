@@ -1,0 +1,41 @@
+name: Update README date
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: readme-date
+  cancel-in-progress: false
+
+jobs:
+  update-date:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Update date
+        run: |
+          DATE=$(date -u +%Y-%m-%d)
+          sed -i "s/_Last updated:.*_/_Last updated: ${DATE}_/" README.md
+
+      # GITHUB_TOKEN pushes don't trigger workflows, so this can't loop
+      - name: Commit and push if changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet README.md; then
+            echo "Date already current"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898333+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Update README date"
+          git push "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main

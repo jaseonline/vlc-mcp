@@ -1,0 +1,12 @@
+# super-linter v9 defaults. Trivy ignores FILTER_REGEX_EXCLUDE, so add paths it should skip here.
+exit-code: 1
+exit-on-eol: 2
+scan:
+  disable-telemetry: true
+  scanners:
+    - vuln
+    - misconfig
+    - secret
+  # Example: public-by-design tokens (e.g. a DID JWT in .well-known/)
+  skip-dirs:
+    - .well-known/

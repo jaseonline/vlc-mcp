@@ -1,0 +1,4 @@
+- **Pushing to `main` deploys the Worker to production** (Workers Builds). The push-guard hook asks first when the push touches deploy paths. Don't push without explicit go-ahead.
+- Local dev: `npx wrangler dev`. Secrets for local dev go in `.dev.vars` (gitignored); production secrets are set with `npx wrangler secret put <NAME>`, never in `wrangler.jsonc`.
+- R2 buckets in the EU jurisdiction need `--jurisdiction eu` on every `wrangler r2` command. Without it they hit the default namespace, which is a different bucket.
+- D1 schema: keep migrations in `migrations/` and apply with `npx wrangler d1 migrations apply <db>`. Check the live schema before assuming columns.

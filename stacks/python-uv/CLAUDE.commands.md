@@ -1,0 +1,4 @@
+- Python: always `uv run …`. Never bare `python` / `pip` (system Python isn't on PATH).
+- Tests: `uv run pytest`
+- Lint / format: `uvx ruff check` and `uvx ruff format` (config in `pyproject.toml`). A hook formats each edited `.py` file. Lint what you touch; don't mass-fix unrelated code.
+- If an MCP client is running this package, `uv run` can fail rebuilding the locked `.venv` entry-point exe (os error 32). Use `uv run --no-sync …`.

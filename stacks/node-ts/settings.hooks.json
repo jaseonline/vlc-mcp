@@ -1,0 +1,15 @@
+{
+  "PostToolUse": [
+    {
+      "matcher": "Write|Edit",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "jq -r '.tool_response.filePath // .tool_input.file_path' | tr -d '\\r' | { read -r f; case \"$f\" in *.ts|*.tsx|*.js|*.mjs|*.jsx|*.json) npx --no-install biome format --write \"$f\";; esac; } >/dev/null 2>&1 || true",
+          "timeout": 30,
+          "statusMessage": "biome format"
+        }
+      ]
+    }
+  ]
+}

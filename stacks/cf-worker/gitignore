@@ -1,0 +1,4 @@
+# --- Cloudflare Workers ---
+.wrangler/
+.dev.vars
+.dev.vars.*

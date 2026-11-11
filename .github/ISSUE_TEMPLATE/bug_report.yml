@@ -1,0 +1,41 @@
+name: Bug report
+description: Something isn't working as documented
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Remove secrets and personal data (tokens, real IPs, MACs, domains) from anything you paste.
+        Security problems go to a private advisory instead: see SECURITY.md.
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Release, tag or commit you're running
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. …
+        2. …
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or output
+      render: shell
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, runtime version, anything else relevant

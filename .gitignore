@@ -1,0 +1,41 @@
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+
+# --- Secrets and local state: never commit ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# Browser captures contain session cookies
+*.har
+
+# --- Logs and output ---
+*.log
+*.err
+logs/
+dist/
+build/
+tmp/
+
+# --- Claude Code ---
+# Shared project config is tracked; personal settings and local state are not
+.claude/*
+!.claude/settings.json
+!.claude/hooks/
+!.claude/skills/
+!.claude/agents/
+!.claude/commands/
+CLAUDE.local.md
+# Remember plugin history
+.remember/
+
+# --- Stack-specific entries go below (from stacks/<stack>/gitignore) ---

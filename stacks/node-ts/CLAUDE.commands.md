@@ -1,0 +1,4 @@
+- Install: `npm ci` (not `npm install`, which rewrites the lockfile).
+- Build: `npm run build`
+- Tests: `npm test`
+- Lint / format: `npm run lint` / `npm run lint:fix` (Biome, config in `biome.json`). A hook formats each edited file.
