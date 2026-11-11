@@ -1,5 +1,5 @@
 [project]
-name = "{{PROJECT_NAME}}"
+name = "vlc-mcp"
 version = "0.1.0"
 description = "{{DESCRIPTION}}"
 readme = "README.md"

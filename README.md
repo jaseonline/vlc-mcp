@@ -1,5 +1,5 @@
-# {{PROJECT_NAME}}
-![{{PROJECT_NAME}}](https://socialify.git.ci/jaseonline/{{PROJECT_NAME}}/image?description=1&font=Raleway&forks=1&issues=1&language=1&name=1&owner=1&pattern=Solid&pulls=1&stargazers=1&theme=Dark)
+# vlc-mcp
+![vlc-mcp](https://socialify.git.ci/jaseonline/vlc-mcp/image?description=1&font=Raleway&forks=1&issues=1&language=1&name=1&owner=1&pattern=Solid&pulls=1&stargazers=1&theme=Dark)
 
 
 {{DESCRIPTION}}

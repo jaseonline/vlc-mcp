@@ -5,7 +5,7 @@ Delete this file and `stacks/` once the steps below are done.
 ## New repo
 
 1. **Create:** `gh repo create jaseonline/<name> --template jaseonline/repo-template --public --clone` (or `--private`).
-2. **Replace placeholders** everywhere: `{{PROJECT_NAME}}`, `{{DESCRIPTION}}`, `{{YEAR}}`. Find them with `git grep -n '{{'`.
+2. **Replace placeholders** everywhere: `vlc-mcp`, `{{DESCRIPTION}}`, `{{YEAR}}`. Find them with `git grep -n '{{'`.
 3. **Merge one stack** from `stacks/` (each has a `README.md` listing its pieces):
    - append its `gitignore` to `.gitignore`
    - merge its `CLAUDE.commands.md` into the Commands section of `CLAUDE.md`

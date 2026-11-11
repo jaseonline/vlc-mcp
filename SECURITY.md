@@ -26,7 +26,7 @@ Residual risks:
 
 Please do **not** open public issues for security problems. Report privately instead:
 
-- **GitHub Security Advisory**: <https://github.com/jaseonline/{{PROJECT_NAME}}/security/advisories/new>
+- **GitHub Security Advisory**: <https://github.com/jaseonline/vlc-mcp/security/advisories/new>
 
 ### What to include
 

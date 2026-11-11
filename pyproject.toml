@@ -1,0 +1,66 @@
+[project]
+name = "vlc-mcp"
+dynamic = ["version"]
+description = "An MCP (Model Contex Protocol) Server to play and control movies using VLC."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    {name = "JaseOnline", email = "JaseOnline@matilda.network"}
+]
+keywords = ["mcp", "server", "vlc"]
+license = "MIT"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+]
+dependencies = [
+    "mcp",
+    "requests",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "pre-commit",
+]
+
+[project.scripts]
+vlc-mcp = "vlc_mcp.main:main"
+
+[project.urls]
+"Homepage" = "https://github.com/jaseonline/vlc-mcp"
+"Bug Tracker" = "https://github.com/jaseonline/vlc-mcp/issues"
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = [
+    "F",        # Pyflakes
+    "UP",       # pyupgrade
+    "B018",     # Found useless expression.
+    "I",        # isort
+    "RUF",      # ruff
+]
+ignore = [
+  "E501", # line too long - will be fixed in format
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[build-system]
+requires = ["setuptools>=61.0", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["vlc_mcp"]
+
+[tool.setuptools_scm]
+# This will write the version to _version.py, used during packaging and at runtime
+write_to = "vlc_mcp/_version.py"
+version_scheme = "post-release"
+local_scheme = "node-and-date"
