@@ -25,7 +25,7 @@ _Last updated: 2026-11-12_
 | --- | --- |
 | [VLC](https://www.videolan.org/vlc/) with the web (HTTP) interface on | Every tool sends its commands through it |
 | [uv](https://docs.astral.sh/uv/) | Installs and runs the server |
-| Python 3.10+ | Runtime (uv can install it for you) |
+| Python 3.10+ | Runtime (uv python install 3.12) |
 | [MediaInfo](https://mediaarea.net/en/MediaInfo) CLI on `PATH` | `show_video` reads it to find the embedded subtitle tracks |
 
 ### Turn on VLC's HTTP interface
@@ -33,7 +33,7 @@ _Last updated: 2026-11-12_
 From the command line:
 
 ```sh
-vlc --extraintf http --http-host localhost --http-port 8085 --http-password "choose-a-password"
+vlc --extraintf http --http-host localhost --http-port 8080 --http-password "choose-a-password"
 ```
 
 Or in the VLC GUI:
@@ -41,9 +41,9 @@ Or in the VLC GUI:
 1. **Tools → Preferences**, then set **Show settings** to **All**.
 2. **Interface → Main interfaces**: tick **Web**.
 3. **Interface → Main interfaces → Lua**: set a **Lua HTTP password**.
-4. Restart VLC. The port defaults to 8080, so either pass `--http-port 8085` or set `VLC_HTTP_PORT=8080`.
+4. Restart VLC. The port defaults to 8080, so either pass `--http-port 8080` or set `VLC_HTTP_PORT=8080`.
 
-To check it works, open `http://localhost:8085`, leave the username blank and enter the password.
+To check it works, open `[http://localhost:8080](http://localhost:8080)`, leave the username blank and enter the password.
 
 ## Installation
 
@@ -71,7 +71,7 @@ The server is configured through environment variables. Set them in your MCP cli
 | `ROOT_VIDEO_FOLDER` | Yes | Folder that holds your videos. Tool paths are relative to it. |
 | `VLC_HTTP_PASSWORD` | Yes, in practice | Password for VLC's HTTP interface. The fallback `your_password` will fail VLC's login. |
 | `VLC_HTTP_HOST` | No | Host where VLC is listening. Defaults to `localhost`. |
-| `VLC_HTTP_PORT` | No | Port VLC's HTTP interface listens on. Defaults to `8085`. |
+| `VLC_HTTP_PORT` | No | Port VLC's HTTP interface listens on. Defaults to `8080`. |
 
 ### Claude Desktop
 
@@ -95,9 +95,9 @@ Add the server to `claude_desktop_config.json`:
 ### Claude Code
 
 ```sh
-claude mcp add vlc \
-  -e ROOT_VIDEO_FOLDER="D:\Videos" \
-  -e VLC_HTTP_PASSWORD="choose-a-password" \
+claude mcp add vlc `
+  -e ROOT_VIDEO_FOLDER="D:\Videos" `
+  -e VLC_HTTP_PASSWORD="choose-a-password" `
   -- uvx --from git+https://github.com/jaseonline/vlc-mcp vlc-mcp
 ```
 
@@ -159,6 +159,14 @@ npx @modelcontextprotocol/inspector uv run vlc-mcp
 ```
 
 Set `ROOT_VIDEO_FOLDER` and `VLC_HTTP_PASSWORD` in your shell first.
+
+```sh
+npx @modelcontextprotocol/inspector `
+  -e ROOT_VIDEO_FOLDER="D:\Videos" `
+  -e VLC_HTTP_PASSWORD="your-password" `
+  -e VLC_HTTP_PORT=8080 `
+  uv run vlc-mcp
+```
 
 Logs go to stderr, because stdout carries the MCP protocol stream.
 

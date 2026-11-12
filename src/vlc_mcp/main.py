@@ -24,7 +24,7 @@ if not ROOT_VIDEO_FOLDER:
     sys.exit(1)
 
 VLC_HTTP_HOST = os.getenv("VLC_HTTP_HOST", "localhost")
-VLC_HTTP_PORT = os.getenv("VLC_HTTP_PORT", "8085")
+VLC_HTTP_PORT = os.getenv("VLC_HTTP_PORT", "8080")
 VLC_HTTP_PASSWORD = os.getenv("VLC_HTTP_PASSWORD", "your_password")
 
 VLC_BASE_URL = f"http://{VLC_HTTP_HOST}:{VLC_HTTP_PORT}"

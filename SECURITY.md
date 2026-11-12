@@ -14,7 +14,7 @@ Only the latest release receives security fixes. Update to the latest version be
 | --- | --- |
 | Secrets | `VLC_HTTP_PASSWORD` is read from the environment and never committed. `.env*` is gitignored |
 | Transport | Runs locally over stdio only; it opens no network port of its own |
-| Access | Talks only to the VLC HTTP interface at `VLC_HTTP_HOST:VLC_HTTP_PORT` (default `localhost:8085`) |
+| Access | Talks only to the VLC HTTP interface at `VLC_HTTP_HOST:VLC_HTTP_PORT` (default `localhost:8080`) |
 | Logging | Logs go to stderr. Request URLs and parameters are logged; the password is not |
 
 Residual risks:
