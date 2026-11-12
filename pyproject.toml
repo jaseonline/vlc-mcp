@@ -1,7 +1,7 @@
 [project]
 name = "vlc-mcp"
 dynamic = ["version"]
-description = "An MCP (Model Contex Protocol) Server to play and control movies using VLC."
+description = "An MCP (Model Context Protocol) Server to play and control movies using VLC."
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [
@@ -24,6 +24,7 @@ dependencies = [
 dev = [
     "ruff",
     "pre-commit",
+    "pytest>=9.2.0",
 ]
 
 [project.scripts]
@@ -57,10 +58,11 @@ requires = ["setuptools>=61.0", "setuptools_scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-include = ["vlc_mcp"]
+where = ["src"]
+include = ["vlc_mcp*"]
 
 [tool.setuptools_scm]
 # This will write the version to _version.py, used during packaging and at runtime
-write_to = "vlc_mcp/_version.py"
+write_to = "src/vlc_mcp/_version.py"
 version_scheme = "post-release"
 local_scheme = "node-and-date"

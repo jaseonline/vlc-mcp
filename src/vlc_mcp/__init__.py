@@ -1,4 +1,4 @@
-"""A minimalistic MCP client for testing MCP Server."""
+"""MCP server that plays and controls videos in VLC through its HTTP interface."""
 
 try:
     from ._version import version as __version__
