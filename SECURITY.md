@@ -10,17 +10,19 @@ Only the latest release receives security fixes. Update to the latest version be
 
 ## Controls
 
-<!-- Replace with this project's real controls, or delete the section if there are none worth stating. -->
-
 | Layer | Control |
 | --- | --- |
-| Secrets | Read from environment variables or the OS credential store; never committed. `.env*` is gitignored |
-| Access | … |
-| Logging | … (never logs secrets or content) |
+| Secrets | `VLC_HTTP_PASSWORD` is read from the environment and never committed. `.env*` is gitignored |
+| Transport | Runs locally over stdio only; it opens no network port of its own |
+| Access | Talks only to the VLC HTTP interface at `VLC_HTTP_HOST:VLC_HTTP_PORT` (default `localhost:8085`) |
+| Logging | Logs go to stderr. Request URLs and parameters are logged; the password is not |
 
 Residual risks:
 
-- …
+- VLC's HTTP interface uses HTTP Basic auth over plain HTTP. Keep it bound to `localhost`.
+- File paths are not confined to `ROOT_VIDEO_FOLDER`: absolute paths pass through, so a client can ask VLC to open any file the user can read.
+- The `vlm` tool passes commands to VLC's VideoLAN Manager unfiltered.
+- `show_video` runs the `mediainfo` executable found on `PATH`.
 
 ## Reporting a vulnerability
 

@@ -23,7 +23,6 @@ if not ROOT_VIDEO_FOLDER:
     print("ROOT_VIDEO_FOLDER not found in environment variables.", file=sys.stderr)
     sys.exit(1)
 
-MODEL_NAME = "claude-3-5-haiku-20241022"
 VLC_HTTP_HOST = os.getenv("VLC_HTTP_HOST", "localhost")
 VLC_HTTP_PORT = os.getenv("VLC_HTTP_PORT", "8085")
 VLC_HTTP_PASSWORD = os.getenv("VLC_HTTP_PASSWORD", "your_password")
