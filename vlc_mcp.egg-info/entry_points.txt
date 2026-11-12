@@ -1,2 +1,0 @@
-[console_scripts]
-vlc-mcp = vlc_mcp.main:main

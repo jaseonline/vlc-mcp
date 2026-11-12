@@ -1,9 +1,0 @@
-# --- Node / TypeScript ---
-node_modules/
-out/
-coverage/
-*.tsbuildinfo
-.npm/
-npm-debug.log*
-*.tgz
-*.vsix
