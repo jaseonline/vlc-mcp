@@ -50,13 +50,13 @@ To check it works, open `[http://localhost:8080](http://localhost:8080)`, leave 
 Run the server straight from GitHub with uv:
 
 ```sh
-uvx --from git+https://github.com/jaseonline/vlc-mcp vlc-mcp
+uvx --from git+https://github.com/${{ env.REPOSITORY_FULL_NAME }} vlc-mcp
 ```
 
 Or clone it for local use or development:
 
 ```sh
-git clone https://github.com/jaseonline/vlc-mcp.git
+git clone https://github.com/${{ env.REPOSITORY_FULL_NAME }}.git
 cd vlc-mcp
 uv sync
 uv run vlc-mcp
@@ -82,7 +82,7 @@ Add the server to `claude_desktop_config.json`:
   "mcpServers": {
     "vlc": {
       "command": "uvx",
-      "args": ["--from", "git+https://github.com/jaseonline/vlc-mcp", "vlc-mcp"],
+      "args": ["--from", "git+https://github.com/${{ env.REPOSITORY_FULL_NAME }}", "vlc-mcp"],
       "env": {
         "ROOT_VIDEO_FOLDER": "D:\\Videos",
         "VLC_HTTP_PASSWORD": "choose-a-password"
@@ -98,7 +98,7 @@ Add the server to `claude_desktop_config.json`:
 claude mcp add vlc `
   -e ROOT_VIDEO_FOLDER="D:\Videos" `
   -e VLC_HTTP_PASSWORD="choose-a-password" `
-  -- uvx --from git+https://github.com/jaseonline/vlc-mcp vlc-mcp
+  -- uvx --from git+https://github.com/${{ env.REPOSITORY_FULL_NAME }} vlc-mcp
 ```
 
 ## Usage
