@@ -1,0 +1,65 @@
+Metadata-Version: 2.4
+Name: vlc-mcp
+Version: 0.0.post3+g8701c2780.d20261112
+Summary: An MCP (Model Contex Protocol) Server to play and control movies using VLC.
+Author-email: JaseOnline <JaseOnline@matilda.network>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/jaseonline/vlc-mcp
+Project-URL: Bug Tracker, https://github.com/jaseonline/vlc-mcp/issues
+Keywords: mcp,server,vlc
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: mcp>=2.3
+Requires-Dist: requests
+Provides-Extra: dev
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: pre-commit; extra == "dev"
+Dynamic: license-file
+
+# vlc-mcp
+![vlc-mcp](https://socialify.git.ci/jaseonline/vlc-mcp/image?description=1&font=Raleway&forks=1&issues=1&language=1&name=1&owner=1&pattern=Solid&pulls=1&stargazers=1&theme=Dark)
+
+
+{{DESCRIPTION}}
+
+_Last updated: 2026-11-11_
+
+## Quick start
+
+```sh
+# Clone, install and run: replace with the real commands
+```
+
+## Usage
+
+<!-- What it does, with a short example. -->
+
+## Configuration
+
+| Variable | Required | Description |
+| --- | --- | --- |
+| `EXAMPLE_VAR` | No | What it controls. Defaults to `…`. |
+
+Copy `.env.example` to `.env` for local development. Never commit `.env`.
+
+## Project layout
+
+| Path | Contents |
+| --- | --- |
+| `src/` | Source code |
+| `tests/` | Tests |
+| `scripts/` | One-off and maintenance scripts |
+| `docs/` | Longer-form documentation |
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). Report security issues privately: see [SECURITY.md](SECURITY.md).
+
+## Licence
+
+[MIT](LICENSE)
