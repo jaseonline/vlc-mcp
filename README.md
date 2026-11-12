@@ -176,7 +176,7 @@ Report vulnerabilities privately: see [SECURITY.md](SECURITY.md).
 | `src/vlc_mcp/main.py` | The MCP server and all its tools |
 | `tests/` | pytest suite, with VLC's HTTP interface mocked |
 | `docs/requests.txt` | Reference for VLC's HTTP interface commands |
-| `.github/workflows/` | CI: Super-Linter, GitGuardian, Claude review |
+| `.github/workflows/` | CI: tests and lockfile check, Super-Linter, GitGuardian, Claude review |
 
 ## Contributing
 

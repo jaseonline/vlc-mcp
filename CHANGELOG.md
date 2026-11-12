@@ -17,6 +17,7 @@ All notable changes to this project. The format follows [Keep a Changelog](https
 - `docs/requests.txt`: reference for VLC's HTTP interface commands.
 - README covering setup, configuration and every tool.
 - pytest suite (`uv run pytest`) that mocks VLC's HTTP interface.
+- `Test` workflow: runs `uv lock --check` and the tests on Python 3.10 and 3.14 for every push and pull request to `main`.
 
 ### Changed
 
