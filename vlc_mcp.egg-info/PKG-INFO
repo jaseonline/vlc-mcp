@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: vlc-mcp
-Version: 0.0.post3+g8701c2780.d20261112
+Version: 0.0.post7+gada3ef3ba
 Summary: An MCP (Model Contex Protocol) Server to play and control movies using VLC.
 Author-email: JaseOnline <JaseOnline@matilda.network>
 License-Expression: MIT
@@ -27,7 +27,7 @@ Dynamic: license-file
 
 {{DESCRIPTION}}
 
-_Last updated: 2026-11-11_
+_Last updated: 2026-11-12_
 
 ## Quick start
 

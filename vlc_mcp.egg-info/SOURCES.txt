@@ -36,6 +36,12 @@ src/.gitkeep
 src/vlc_mcp/__init__.py
 src/vlc_mcp/_version.py
 src/vlc_mcp/main.py
+src/vlc_mcp/__pycache__/__init__.cpython-313.pyc
+src/vlc_mcp/__pycache__/__init__.cpython-314.pyc
+src/vlc_mcp/__pycache__/_version.cpython-313.pyc
+src/vlc_mcp/__pycache__/_version.cpython-314.pyc
+src/vlc_mcp/__pycache__/main.cpython-313.pyc
+src/vlc_mcp/__pycache__/main.cpython-314.pyc
 stacks/cf-worker/CLAUDE.gotchas.md
 stacks/cf-worker/README.md
 stacks/cf-worker/gitignore
