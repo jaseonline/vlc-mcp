@@ -552,7 +552,7 @@ async def set_equalizer(
 # ---------------------------------------------------------------------------
 
 
-def get_available_subtitles(video_path) -> str:
+def get_available_subtitles(video_path: str) -> list[dict]:
     command = ["mediainfo", "--Output=JSON", video_path]
     result = subprocess.run(
         command,
