@@ -7,7 +7,7 @@
 
 vlc-mcp is a Model Context Protocol (MCP) server that lets an AI assistant such as Claude find, play and control videos in VLC. It talks to VLC's built-in HTTP interface and runs locally over stdio.
 
-_Last updated: 2026-11-12_
+_Last updated: 2026-11-13_
 
 ## Features
 
