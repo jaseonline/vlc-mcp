@@ -88,6 +88,48 @@ def test_get_status_reports_connection_errors(vlc):
     assert run(main.get_status()).startswith("Failed to get status")
 
 
+def _playing(filename="Amélie.mkv", plid=4):
+    return {"state": "playing", "currentplid": plid, "information": {"category": {"meta": {"filename": filename}}}}
+
+
+def test_get_current_file_name_only_skips_playlist(vlc):
+    vlc.responses["/requests/status.json"] = FakeResponse(_playing())
+    assert run(main.get_current_file()) == "Current file: Amélie.mkv"
+    assert [path for path, _ in vlc.calls] == ["/requests/status.json"]
+
+
+def test_get_current_file_with_path_uses_current_playlist_item(vlc):
+    vlc.responses["/requests/status.json"] = FakeResponse(_playing())
+    tree = {
+        "children": [
+            {
+                "name": "Playlist",
+                "children": [
+                    {"type": "leaf", "id": "3", "uri": "file:///D:/Films/Other.mkv"},
+                    {"type": "leaf", "id": "4", "uri": "file:///D:/Films/Am%C3%A9lie.mkv"},
+                ],
+            }
+        ]
+    }
+    vlc.responses["/requests/playlist.json"] = FakeResponse(tree)
+    result = run(main.get_current_file(include_path=True))
+    assert result.splitlines()[0] == "Current file: Amélie.mkv"
+    assert result.splitlines()[1].startswith("Path: ") and result.endswith("Amélie.mkv")
+    assert "Other" not in result
+
+
+def test_get_current_file_with_path_keeps_stream_uri(vlc):
+    vlc.responses["/requests/status.json"] = FakeResponse(_playing("live"))
+    tree = {"children": [{"type": "leaf", "id": "4", "uri": "http://example.test/live"}]}
+    vlc.responses["/requests/playlist.json"] = FakeResponse(tree)
+    assert run(main.get_current_file(include_path=True)).endswith("Path: http://example.test/live")
+
+
+def test_get_current_file_when_stopped(vlc):
+    vlc.responses["/requests/status.json"] = FakeResponse({"state": "stopped", "currentplid": -1})
+    assert run(main.get_current_file(include_path=True)) == "Nothing is playing."
+
+
 # ---------------------------------------------------------------------------
 # Playlist
 # ---------------------------------------------------------------------------
@@ -193,5 +235,5 @@ def test_get_album_art_returns_image(vlc):
 
 def test_tool_count():
     names = {tool.name for tool in run(main.app.list_tools())}
-    assert len(names) == 26
+    assert len(names) == 27
     assert {"show_video", "set_equalizer", "vlm"} <= names

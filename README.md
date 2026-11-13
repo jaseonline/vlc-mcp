@@ -119,6 +119,7 @@ Once the server is connected, ask for what you want in plain language. For examp
 | | `browse_folder` | Lists the files and folders VLC can see in a folder |
 | | `show_video` | Plays a video full screen, with an optional subtitle language code such as `eng` |
 | Status | `get_status` | Shows the state, position, file, rate, playlist modes and full-screen state |
+| Status | `get_current_file` | Shows the name of the file playing now; `include_path=true` adds its full path (or stream URI) |
 | Transport | `vlc_control` | Runs `play`, `pause`, `toggle`, `stop`, `next`, `previous` or `fullscreen` |
 | | `seek` | Jumps to a time or percentage, absolute or relative: `30s`, `-10s`, `+1h:2m:3s`, `50%` |
 | | `set_playback_rate` | Sets the speed (`1.0` is normal) |

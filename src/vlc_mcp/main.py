@@ -6,6 +6,8 @@ import pathlib
 import re
 import subprocess
 import sys
+import urllib.parse
+import urllib.request
 from pathlib import Path
 
 import requests
@@ -119,6 +121,50 @@ async def get_status() -> str:
         return message
     except requests.RequestException as e:
         return f"Failed to get status: {e}"
+
+
+def _uri_to_path(uri: str) -> str:
+    """Turn a file:// URI into a local path. Other URIs (network streams) come back unchanged."""
+    parsed = urllib.parse.urlparse(uri)
+    if parsed.scheme != "file":
+        return uri
+    # UNC shares arrive as file://server/share/...; keep the host so the path stays reachable
+    prefix = f"//{parsed.netloc}" if parsed.netloc else ""
+    return urllib.request.url2pathname(prefix + parsed.path)
+
+
+@app.tool()
+async def get_current_file(include_path: bool = False) -> str:
+    """Get the name of the file VLC is currently playing.
+
+    Args:
+        include_path: Also return the file's full path (or the stream URI if it isn't a local file)
+    """
+    try:
+        status = await vlc_status()
+    except requests.RequestException as e:
+        return f"Failed to get status: {e}"
+
+    # status.json only carries the bare filename; the location lives on the playlist item
+    filename = status.get("information", {}).get("category", {}).get("meta", {}).get("filename")
+    if not filename or status.get("state") == "stopped":
+        return "Nothing is playing."
+    if not include_path:
+        return f"Current file: {filename}"
+
+    try:
+        tree = await vlc_json("/requests/playlist.json")
+    except requests.RequestException as e:
+        return f"Current file: {filename} (failed to get path: {e})"
+
+    leaves = []
+    _collect_leaves(tree, leaves)
+    current_id = str(status.get("currentplid", ""))
+    item = next((leaf for leaf in leaves if str(leaf.get("id")) == current_id), None)
+    item = item or next((leaf for leaf in leaves if leaf.get("current")), None)
+    if item is None or not item.get("uri"):
+        return f"Current file: {filename} (path unavailable)"
+    return f"Current file: {filename}\nPath: {_uri_to_path(item['uri'])}"
 
 
 @app.tool()

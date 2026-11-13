@@ -6,7 +6,8 @@ All notable changes to this project. The format follows [Keep a Changelog](https
 
 ### Added
 
-- 18 new MCP tools, bringing the total to 26:
+- 19 new MCP tools, bringing the total to 27:
+  - Status: `get_current_file` (optional `include_path` for the full path).
   - Transport: `set_playback_rate`, `set_aspect_ratio`, `set_sync_delay`.
   - Tracks: `get_tracks`, `select_track`, `add_subtitle`.
   - Playlist: `get_playlist`, `enqueue_video`, `play_playlist_item`, `remove_playlist_item`, `clear_playlist`, `sort_playlist`, `toggle_playlist_mode`.
